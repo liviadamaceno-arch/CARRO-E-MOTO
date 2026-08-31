@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação Cidade em Movimento</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Configuração do Palco */
+        .stage {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0d1b2a; /* Cor de fundo caso a imagem não cubra tudo */
+        }
+
+        /* A Imagem da Cidade se movendo infinitamente */
+        .city-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300%; /* Largura 3x maior que a tela para dar espaço para o loop */
+            height: 100%;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-repeat: repeat-x;
+            animation: scrollCity 10s linear infinite;
+            z-index: 1;
+        }
+
+        /* Animação da cidade (Move da direita para a esquerda com loop perfeito) */
+        @keyframes scrollCity {
+            from { transform: translateX(0); }
+            to { transform: translateX(-33.3333%); } /* Mais casas decimais = emenda perfeita */
+        }
+
+        /* Estilo dos veículos (Ficam "parados" enquanto a cidade passa) */
+        .vehicle {
+            position: absolute;
+            bottom: 50px;
+            z-index: 10;
+        }
+
+        #car {
+            width: 150px;
+            left: 20%; /* Posição na tela */
+        }
+
+        #moto {
+            width: 120px;
+            left: 55%; /* Posição na tela (mais à frente) */
+        }
+
+        /* Efeito de "chão" para dar profundidade */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #1a1a2e;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stage">
+        <!-- Fundo da cidade em movimento -->
+        <div class="city-bg"></div>
+       
+        <!-- Veículos parados na tela -->
+        <img src="car.png" id="car" class="vehicle" alt="Carro">
+        <img src="motobike.png" id="moto" class="vehicle" alt="Motoboy">
+       
+        <div class="ground"></div>
+    </div>
+
+</body>
+</html>
